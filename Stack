@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<stdlib.h>
+int size;
+void push(int stack[],int *top)
+int pop(int stack[],int *top)
+void display(int stack[],int top)
+void main(){
+  int stack[],top,choice;
+  printf("enter the size of the stack:");
+  scanf("%d",&size);
+  top=-1;
+  while(1){
+    printf("\n 1.push \n 2.pop \n 3.display \n 4.exit);
+    printf("enter your choice \n");
+    scanf("%d",&choice);
+    switch(choice){
+      case1:push(stack,&top);
+      break;
+      case2:if(top==-1)
+      printf(* \n stack is uderflow \n *);
+      else
+      {
+        printf(popped element is %d",pop(stack,&top));
+        printf("popping is done");
+      }
+      break;
+      case 3:if (top==-1){
+        printf("stack is empty,first push element");
+        push(stack,&top);
+        display(stack,top)
+      break;
+      case 4:Exit(0);
+      default:printf("invalid choice");
+      break;
+    }
+  }
+}
+void push(int stack[], int *top){
+  if(*top==(size-1)){
+    printf("*\n stack is overflow \n*);
+  }
+  else{
+    *top=*top+1;
+    printf("enter the elements to be pushed:");
+    scanf("%d",&stack[*top]);
+    printf("Pushing is done");
+  }
+}
+int pop(int stack[]. int *top)[
+  int element;
+  if (top!=-1){
+    element=stack[*top];
+    *top=*top-1;
+    return element;
+  }
+}
+void display(int stack[], int top){
+  int i;
+  printf("stack elements are:");
+  for(i=0;i<=top;i++)
+  printf("%d \n",stack[i]);
+}
