@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char acMainStr[200], acSrchStr[30], acRepStr[30], acResStr[200], acCopyStr[200];
+    int i=0, j=0 ,k=0, l, iMtchCnt, iStop, len, iNumOfMatch=0;
+
+    printf("nEnter the main stringn");
+	scanf(" %[^n]", acMainStr);
+	
+    printf("nEnter the Pattern stringn");
+	scanf(" %[^n]", acSrchStr);
+
+    printf("nEnter the Replace stringn");
+	scanf(" %[^n]", acRepStr);    
+
+    strcpy(acCopyStr, acMainStr);
+    for(i=0;i<(strlen(acMainStr)-strlen(acSrchStr)+1);i++)
+    {
+        iMtchCnt = 0;
+        for(j=0;j<strlen(acSrchStr);j++)
+        {
+            if(acMainStr[i+j] == acSrchStr[j])
+            {
+                iMtchCnt++;
+            }
+            else
+            {
+                break;
+            }
+            if(iMtchCnt == strlen(acSrchStr))   //Check if number of character matches equals length of pattern string
+            {
+                iNumOfMatch++;      //update number of total matches by 1
+//                printf("nMatch occured at %d position in textn", i+1);
+                for(k=0;k<i;k++)
+                {
+                    acResStr[k] = acMainStr[k];     //copy till the ith character where the match occured
+                }
+                iStop = k + strlen(acSrchStr); //point from where rest of the original string has to be copied
+                acResStr[k] = '';
+                strcat(acResStr, acRepStr); // append the replacement string
+                len = strlen(acResStr);
+                for(k=iStop, l=0; acMainStr[k] != '';k++, l++) //copy rest of original string
+                {
+                    acResStr[len+l] = acMainStr[k];
+                }
+                acResStr[len+l] = '';
+//                printf("n%s",acResStr);
+                strcpy(acMainStr,acResStr);
+            }
+        }
+
+    }
+    printf("nInput Textn");
+    printf("%sn",acCopyStr);
+
+    if(iNumOfMatch > 0)
+    {
+        printf("n%d matches occurednnText after replacing matched patterns is shown belown", iNumOfMatch);
+        printf("n%sn",acResStr);
+    }
+    else
+    {
+        printf("nPattern String not found in Textn");
+    }
+    return 0;
+}
